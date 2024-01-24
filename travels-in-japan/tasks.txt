@@ -1,85 +1,125 @@
 /* Create Benefits content */
 /Figma
-1. Скачать с макета иконки benefits
 
 /html
-1. [В main] создать section с классом benefits
-2. [В benefits] создать div с классом benefits__wrap
-3. [В benefits__wrap] создать h1 с классом benefits__title
-4. [В benefits__wrap] создать div с классом benefits__cards
-5. [В benefits__cards] создать 3 div с классом benefits__card
-6. [В benefits__card] создать ещё обёртку benefits__card-pic для каждой 
-7. [В benefits__card-pic] создать img с классом benefits__card-thumb в alt указать заголовок карточки
-8. [В benefits__card] создать h3 с классом benefits__card-title внутри заголовок карточки с макета
-9. [В benefits__card] создать p с классом benefits__card-desc внутри текс карточки с макета
-10. [В benefits__card] создать ссылку заглушку с классом benefits__card-more внутри LEARN MORE
+1. [В main] создать section с классом places
+2. [в places] div с классом wrapper__full
+3. [в wrapper__full] div с классом places__caption
+4. [в places__caption] создать под загаловок h2 с классом places__title
+и класс section-title
+5. [в places__caption] создать ссылку заглушка с классом places__view-all 
+6. [в wrapper__full] div places__cards внутри создать figure с классом places__card *5
+7. [в places__card] внутри создать img с классом places__card-pic, alt назв карточки 
+8. [в places__card] Создать figcaption с классом places__card-title внутри текст карточки
+9. div places__card для первых двух карточек доп стил класса places__card_size_lg;
+places__card img для первых двух карточек img добавить класс places__card-pic_size_lg
+10. div places__card для нижних 3 доп стил класса places__card_size_sm;
+places__card img для нижних 3 карточек img добавить класс places__card-pic_size_lg
+11. [в places__card] Создать ссылку с классом places__card-link заглушка 
 
 /css
-"Чтоб сделать эфект блок наезжает на другой нужно родителю задать позицию relative для дочернего absolute"
-img{
-  max-width: 100% | чтоб не превышала ширину контейнера в котором находится
-  height: auto; | всегда зжималось порпорционально по высоте
+.intro {
+  добавить padding-top: 263px # Добавить чтоб обезопасить контент если будет перекрыватся другим контентом   
 }
-.benefits{
-  сделать отступ внешний вниз: 131px;
+"Добавить общие стили возле wrapper и тд"
+.wrapper__full{ # ниже benefits для всего контента до видео ширина блока выше.    
+  max-width: 1260px;
+  margin: 0 auto;
 }
-
-1. benefits__wrap{
-  макс-ширину: задать с макета /benefits
-  фон белый;
-  выровнять блок по центру;
-  В макете посмотреть тень ,нажав на весь блок benefits;
-  позиция: релетив;
+.section-title{# обший стиль шрифта для places   
+  с макета взять типографию
+  position: relative; # начало работы с псевдо элементом  
+  отступ для синей линии внутрений отступ вниз 10px
 }
-2. benefits__title{
-  типографию с макета взять;
-  задать внутриние отступы разбиваем на 2 секции title & cards две разные секции;
-  позиция: абсолют;
-  высота: 0;
-  лево: 0;
-  сдвинуть элемент по оси Y, его собственной высоты;
-  фон: задать белый;
-  задать ширину 100%
+.section-title:after{ # создание псевдо элемента ,Синия линия
+  display: block;
+  content: '';
+  ширина в фигма взять
+  высоту тоже
+  фон цвет взять в фигма
+  позиция абсолуте
+  прибить к низу 0 и левому краю 0
 }
-3. benefits__cards{
+1. places{
+  margin-botton: 131px
+}
+2. places__caption{# разместить загаловок и ссылку по одной линии  
+  дисплей флекс
+  флекс врап врап
+  выровнять по вертикали центр
+  justify-content space-between # прибить контент блока в конец по разные стороны  
+  сделать внутрений отступ вниз от полоски смотреть в фигма
+}
+3. places__title{
+  margin-right: 15px # при меньшем экране на places__title не зализал places__view-all
+}
+4. places__view-all {
+  типографию с фигмы 
+  цвет текста с фигмы
+  убрать подчёркивание ссылки
+  внутрений отступ право 59px
+  добавить фон картинку стрелочку из прошлого блока ,без повтора, право,center
+}
+places__view-all:hover,
+places__view-all:focus, {
+  прозрачность .65
+}
+5. places__cards{
   display:grid;
-  grid-template-colums: repeat(3, 1fr)| создать 3 колонки, размер 1fr
-  grid-colum-gap: 55px | задать отступы
-  задать внутринние отступы карточки по краям
+  grid-template-colums: repeat(6, 1fr)
+  grid-gap: 10px
 }
-4. benefits__card{
-  grid-column: span 1 | задать явную ширину карточки
-  сделать отступ внешний вниз: 112px;
+6. places__card{
+  position: relative;
+  overflow: hidden;
 }
-5. benefits__card-pic{
-  макс-ширина: 66px;
-  внутинний отступ внизу 37px;
+places__card::after{
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 24, 36, 0.4); 
+  position: absolute;
+  top: 0
+  left: 0
+  z-index: 2;
 }
-6. benefits__thumb{
-  при добавление img на страницу всегда есть отступ снизу чтоб избежать этого можно задать 
-  display: flex; или display: block;
+7. places__card:hover .places__card-pic{
+  transform: scale(1.05)
 }
-7. benefits__card-title{
-  типографию с макета взять;
-  отступ внешний посмотреть в макете;
+8. places__card-title{
+  типография с фигмы карточек
+  цвет текста белый
+  позиция абсолуте
+  botton: 27px
+  left: 29px
+  z-index 3;
 }
-8. benefits__card-desc{
-  типографию с макета взять;
-  отступ внешний посмотреть в макете;
+9. places__card_size_lg{
+  grid-column: span 3;
 }
-9. benefits__card-more{
-  display: inline-block;
-  padding-right: 59px;
-  типографию с макета взять;
-  убрать подчёркивание ссылки;
-  background добавить стрелочку, пер повторять ,95%,центр;
-  transition: .2s all; | для плавной анимации
+10. places__card_size_sm{
+  grid-column: span 2;
 }
-10. benefits__card-more:hover,focus{
-  background добавить стрелочку, пер повторять ,право,центр;
+11. places__card-pic{
+  width: 100%;
+  transition: .15s all;
 }
-11.
-
-
+12. places__card_size_lg{
+  height: 354px;
+  object-fit: cover;
+}
+13. places__card_size_sm{
+  height: 283px;
+  object-fit: cover;
+}
+14. places__card-link{
+  position: absolute;
+  top 0
+  left 0
+  width 100%
+  height: 100%;
+  z-index: 4;
+}
 
 /*Добавлять при создание новых свойств css & html комменты начало стилизации определенной секции и конец*/
